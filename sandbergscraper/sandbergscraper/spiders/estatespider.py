@@ -55,7 +55,7 @@ class EstatespiderSpider(scrapy.Spider):
         estate_Item['location_desc']=response.xpath(
             '//h2[contains(text(),"About Area")]/following-sibling::div[1]//text()'
         ).getall()
-
+        estate_Item["images_urls"] = response.xpath('//picture/source/@srcset').getall()
         yield estate_Item
 
 

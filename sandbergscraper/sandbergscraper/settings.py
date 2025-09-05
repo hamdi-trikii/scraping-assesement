@@ -14,8 +14,10 @@ NEWSPIDER_MODULE = "sandbergscraper.spiders"
 
 ADDONS = {}
 FEEDS={
-    'booksdata.json': {"format":"json"}
+    'booksdata.json': {"format":"json",'overwrite':True}
 }
+FEED_FORMAT = 'jsonlines'
+FEED_URI = 'data/sandberg_properties.jsonl' 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = "sandbergscraper (+http://www.yourdomain.com)"
@@ -48,9 +50,10 @@ DOWNLOAD_DELAY = 1
 
 # Enable or disable downloader middlewares
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
-#DOWNLOADER_MIDDLEWARES = {
-#    "sandbergscraper.middlewares.SandbergscraperDownloaderMiddleware": 543,
-#}
+DOWNLOADER_MIDDLEWARES = {
+   # "sandbergscraper.middlewares.SandbergscraperDownloaderMiddleware": 543,
+   "sandbergscraper.middlewares.ScrapeOpsFakeBrowserHeaderAgentMiddleware": 543,
+}
 
 # Enable or disable extensions
 # See https://docs.scrapy.org/en/latest/topics/extensions.html
@@ -87,3 +90,17 @@ ITEM_PIPELINES = {
 
 # Set settings whose default value is deprecated to a future-proof value
 FEED_EXPORT_ENCODING = "utf-8"
+
+
+
+
+#fake agents using scrapeops api
+SCRAPEOPS_API_KEY= 'ddf63051-1282-429e-ab35-37c8873c1ed2'
+SCRAPEOPS_FAKE_USER_AGENT_ENDPOINT='https://headers.scrapeops.io/v1/user-agents'
+SCRAPEOPS_FAKE_USER_AGENT_ENABLED=True
+SCRAPEOPS_NUM_RESULTS=50
+
+
+#scrapeops headers
+SCRAPEOPS_FAKE_BROWSER_HEADER_ENDPOINT='https://headers.scrapeops.io/v1/browser-headers'
+SCRAPEOPS_FAKE_BROWSER_HEADER_ENABLED=True

@@ -16,5 +16,6 @@ class estateItem(scrapy.Item):
     bed_rooms = scrapy.Field()
     description = scrapy.Field()
     location_desc = scrapy.Field()
+    images_urls= scrapy.Field()
     
 

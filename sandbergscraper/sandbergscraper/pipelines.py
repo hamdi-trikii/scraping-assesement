@@ -10,4 +10,13 @@ from itemadapter import ItemAdapter
 
 class SandbergscraperPipeline:
     def process_item(self, item, spider):
+        #just  an exemple XD
+        adapter = ItemAdapter(item)
+
+        field_names = adapter.field_names()
+
+        value = adapter.get("price")
+        adapter["price"] = value.strip()
+        ##herei can processs each item ..
+        #later on work .
         return item
